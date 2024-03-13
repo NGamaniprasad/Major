@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .login-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <p><a href="#" id="forgotPassword">Forgot Password?</a></p>
+</div>
+
+<div id="resetPasswordModal" style="display: none;" class="login-container">
+    <h2>Reset Password</h2>
+    <form id="resetPasswordForm">
+        <input type="text" id="resetEmail" placeholder="Email" required><br>
+        <input type="submit" value="Reset Password">
+    </form>
+    <p><a href="#" id="backToLogin">Back to Login</a></p>
+</div>
+
+<script>
+    const showResetPasswordModal = () => {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('resetPasswordModal').style.display = 'block';
+    };
+
+    const showLoginForm = () => {
+        document.getElementById('resetPasswordModal').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+    };
+
+    document.getElementById('forgotPassword').addEventListener('click', function(e) {
+        e.preventDefault();
+        showResetPasswordModal();
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', function(e) {
+        e.preventDefault();
+        showLoginForm();
+    });
+
+    document.getElementById('resetPasswordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('resetEmail').value;
+        // Here you can add your code to handle the password reset process, e.g., send a reset link to the provided email.
+        alert('Password reset link sent to ' + email);
+        showLoginForm();
+    });
+</script>
+
+</body>
+</html>
